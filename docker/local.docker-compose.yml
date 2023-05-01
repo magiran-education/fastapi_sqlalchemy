@@ -1,0 +1,19 @@
+# запуск
+# docker-compose -f docker/local.docker-compose.yml up
+
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:15.2
+    restart: always
+    environment:
+      POSTGRES_DB: "fastapi_sqlalchemy"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "admin"
+      PGDATA: "/var/lib/postgresql/data"  # тут в контейнере будут храниться файлы БД
+    volumes:
+      - .:/var/lib/postgresql  # тут файлы БД сохраняются локально
+    ports:
+      - "5432:5432"
