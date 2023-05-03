@@ -19,7 +19,7 @@ app = FastAPI(
     title="Trading App"
 )
 
-app.include_router(auth_router, prefix="/auth", tags=["auth"])  # выкл из-за LOGIN_BAD_CREDENTIALS во время логина
+# app.include_router(auth_router, prefix="/auth", tags=["auth"])  # выкл из-за LOGIN_BAD_CREDENTIALS во время логина
 
 
 # первый эндпоинт
@@ -71,7 +71,7 @@ def get_user(user_id: int):
         raise HTTPException(status_code=404, detail="User not found")
 
 
-# добавление надора параметров в эндпоинт
+# добавление набора параметров в эндпоинт
 async def common_params(offset: int = 0, limit: int = 10):
     return {"offset": offset, "limit": limit}
 
