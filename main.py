@@ -1,6 +1,7 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel, Field
 from enum import Enum
+from auth.router import auth_router
 
 
 TRADES = [
@@ -17,6 +18,8 @@ USERS = [
 app = FastAPI(
     title="Trading App"
 )
+
+app.include_router(auth_router, prefix="/auth", tags=["auth"])  # выкл из-за LOGIN_BAD_CREDENTIALS во время логина
 
 
 # первый эндпоинт
@@ -66,3 +69,13 @@ def get_user(user_id: int):
         return user[0]
     else:
         raise HTTPException(status_code=404, detail="User not found")
+
+
+# добавление надора параметров в эндпоинт
+async def common_params(offset: int = 0, limit: int = 10):
+    return {"offset": offset, "limit": limit}
+
+
+@app.get("/trades2")
+async def get_trades_2(commons: dict = Depends(common_params)):
+    return commons
