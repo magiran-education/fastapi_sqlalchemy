@@ -19,7 +19,7 @@ app = FastAPI(
     title="Trading App"
 )
 
-app.include_router(auth_router, prefix="/auth", tags=["auth"])  # выкл из-за LOGIN_BAD_CREDENTIALS во время логина
+# app.include_router(auth_router, prefix="/auth", tags=["auth"])  # выкл из-за LOGIN_BAD_CREDENTIALS во время логина
 
 
 # первый эндпоинт
