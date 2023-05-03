@@ -1,10 +1,9 @@
 from typing import Optional
 
 from fastapi import Depends, Request
-from fastapi.security import OAuth2PasswordRequestForm
 from fastapi_users import BaseUserManager, IntegerIDMixin, schemas, models, exceptions
 
-from auth.database import AuthUser, get_user_db
+from apps.auth.database import AuthUser, get_user_db
 
 SECRET = "SECRET__jdsjhgahgasdghasd"  # для сброса пароля и верификации
 

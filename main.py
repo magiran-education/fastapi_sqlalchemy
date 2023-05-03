@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel, Field
 from enum import Enum
-from auth.router import auth_router
+from apps.auth.router import auth_router
 
 
 TRADES = [
@@ -19,7 +19,7 @@ app = FastAPI(
     title="Trading App"
 )
 
-# app.include_router(auth_router, prefix="/auth", tags=["auth"])  # выкл из-за LOGIN_BAD_CREDENTIALS во время логина
+app.include_router(auth_router, prefix="/auth", tags=["auth"])  # выкл из-за LOGIN_BAD_CREDENTIALS во время логина
 
 
 # первый эндпоинт
